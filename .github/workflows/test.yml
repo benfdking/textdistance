@@ -1,8 +1,5 @@
 on: [pull_request]
 name: Test
-env: 
-  GO111MODULE: "on"
-  GOPROXY: "https://proxy.company.com"
 jobs:
   test:
     strategy:
