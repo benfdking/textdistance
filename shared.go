@@ -1,6 +1,6 @@
 package textdistance
 
-func returnEarlyIfPossible(stringOne, stringTwo string) float32 {
+func returnEarlyIfPossible(stringOne, stringTwo string) float64 {
 	// if both are empty strings
 	if len(stringOne) == 0 && len(stringTwo) == 0 {
 		return 1

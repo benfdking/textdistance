@@ -1,31 +1,43 @@
 package textdistance
 
 type Distance interface {
-	Distance(strings string) float
+	Distance(s1, s2 string) float64
 }
 
-func baseMaximum(strings []string) float {
-	var maximum float
+type Minimum interface {
+	Minimum(s1, s2 string) float64
+}
+
+type Maximum interface {
+	Maximum(s1, s2 string) float64
+}
+
+type Similarity interface {
+	Similarity(s1, s2 string) float64
+}
+
+func baseMaximum(strings []string) float64 {
+	var maximum int
 	for _, s := range strings {
 		if len(s) > maximum {
-			maximum = float(len(s))
+			maximum = len(s)
 		}
 	}
-	return maximum
+	return float64(maximum)
 }
 
-func baseNormalizedDistance(distance, maximum float) float {
+func baseNormalizedDistance(distance, maximum float64) float64 {
 	if maximum == 0 {
 		return 1
 	}
 	return distance / maximum
 }
 
-func baseSimilarity(maximum, distance float) float {
+func baseSimilarity(maximum, distance float64) float64 {
 	return maximum - distance
 }
 
-func identical(strings []string) boolean {
+func identical(strings []string) bool {
 	// TODO Implement
 	return false
 }
