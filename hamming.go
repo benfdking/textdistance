@@ -1,5 +1,6 @@
 package textdistance
 
+// Hamming
 type Hamming struct {
 }
 
