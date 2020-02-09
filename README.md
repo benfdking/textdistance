@@ -4,13 +4,15 @@
 
 `textdistance` is a string comparison library written in Go
 
-## Install
+## Usage
+
+### Install
 
 ```bash
 go get -u github.com/benfdking/textdistance
 ```
 
-## Example
+### Example
 
 ```go
 package main 
