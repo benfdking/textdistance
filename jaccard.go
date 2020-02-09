@@ -14,10 +14,6 @@ func NewJaccard() Jaccard {
 	return Jaccard{StringToSet: WordsToSet}
 }
 
-func (Jaccard) Maximum(s1, s2 string) float64 {
-	return 1
-}
-
 func (j Jaccard) Similarity(s1, s2 string) float64 {
 	if s1 == s2 {
 		return 1.0

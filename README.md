@@ -6,7 +6,7 @@
 
 ## Install
 
-```go
+```bash
 go get -u github.com/benfdking/textdistance
 ```
 
