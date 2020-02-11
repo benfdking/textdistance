@@ -18,20 +18,20 @@ func TestMRAEncoding(t *testing.T) {
 			want: "BRN",
 		},
 		{
-			in:   "Boern",
-			want: "BRN",
+			in:   "Smith",
+			want: "SMTH",
 		},
 		{
-			in:   "Boern",
-			want: "BRN",
+			in:   "Smyth",
+			want: "SMYTH",
 		},
 		{
-			in:   "Boern",
-			want: "BRN",
+			in:   "Catherine",
+			want: "CTHRN",
 		},
 		{
-			in:   "Boern",
-			want: "BRN",
+			in:   "Kathryn",
+			want: "KTHRYN",
 		},
 	}
 	for _, tt := range tests {
