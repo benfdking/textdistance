@@ -39,30 +39,40 @@ func (m MRA) Distance(s1, s2 string) float64 {
 
 var (
 	vowels = map[rune]bool{
-		'a': true,
-		'e': true,
-		'i': true,
-		'o': true,
-		'u': true,
+		'A': true,
+		'E': true,
+		'I': true,
+		'O': true,
+		'U': true,
 	}
 )
 
-// Encoding returns the encoded MRA string according to the match rating approach. Encoding follows the following steps.
+// Encoding returns the encoded MRA string according to the match rating approach. Encoding follows the following steps:
+//
+// 1. Delete all vowels unless the vowel begins the word
+// 2. Remove the second consonant of any double consonants present
+// 3. Reduce codex to 6 letters by joining the first 3 and last 3 letters only
+//
+// From Wikipedia: https://en.wikipedia.org/wiki/Match_rating_approach
 func (m MRA) Encoding(s string) string {
-	lowerCaseString := strings.ToLower(s)
+	s = strings.ToUpper(s)
 
+	// step 1
 	var removedVowels string
-	for _, r := range lowerCaseString {
-		if _, ok := vowels[r]; !ok {
-			removedVowels += string(r)
+	for i := 1; i < len(s); i++ {
+		if _, ok := vowels[rune(s[i])]; !ok {
+			removedVowels += string(s[i])
 		}
 	}
 
+	// step 2
 	var removedDoubleConsonants string
 	for i := 0; i < len(removedVowels)-1; i++ {
 		if _, ok := vowels[rune(removedVowels[i])]; !ok {
 			if _, ok := vowels[rune(removedVowels[i+1])]; !ok {
 				removedDoubleConsonants += string(removedVowels[i])
+			} else {
+				i++
 			}
 		}
 	}
@@ -70,9 +80,9 @@ func (m MRA) Encoding(s string) string {
 		removedDoubleConsonants += string(removedVowels[len(removedVowels)-1])
 	}
 
-	l := len(removedDoubleConsonants)
-	if l > 6 {
-		return removedDoubleConsonants[0:3] + removedDoubleConsonants[l-3:l]
+	// step 3
+	if len(removedDoubleConsonants) > 6 {
+		return removedDoubleConsonants[0:3] + removedDoubleConsonants[len(removedDoubleConsonants)-3:]
 	}
-	return strings.ToUpper(removedDoubleConsonants)
+	return removedDoubleConsonants
 }
