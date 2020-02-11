@@ -1,6 +1,7 @@
 package textdistance
 
 import (
+	"math"
 	"strings"
 )
 
@@ -8,7 +9,10 @@ type MRA struct {
 }
 
 func (m MRA) Minimum(s1, s2 string) float64 {
-	sl := len(s1) + len(s2)
+	e1 := m.Encoding(s1)
+	e2 := m.Encoding(s2)
+
+	sl := len(e1) + len(e2)
 	switch {
 	case sl <= 4:
 		return 5
@@ -24,8 +28,16 @@ func (m MRA) Minimum(s1, s2 string) float64 {
 }
 
 func (m MRA) Distance(s1, s2 string) float64 {
-	//encoded1 := m.Encoding(s1)
-	//encoded2 := m.Encoding(s2)
+	e1 := m.Encoding(s1)
+	e2 := m.Encoding(s2)
+
+	lengthDifference := math.Abs(float64(len(e1) - len(e2)))
+	if lengthDifference > 3 {
+		panic("encoded must have length difference less than 3")
+	}
+
+	//minimum := m.Minimum(e1, e2)
+
 
 	//if math.Abs(len(encoded1) - len(encoded2)) > 3 {
 	//
@@ -59,8 +71,8 @@ func (m MRA) Encoding(s string) string {
 
 	// step 1
 	var removedVowels string
-	for i := 1; i < len(s); i++ {
-		if _, ok := vowels[rune(s[i])]; !ok {
+	for i := 0; i < len(s); i++ {
+		if _, ok := vowels[rune(s[i])]; !ok || i == 0 {
 			removedVowels += string(s[i])
 		}
 	}

@@ -1,10 +1,45 @@
 package textdistance
 
 import (
+	"fmt"
+	"math"
 	"testing"
 )
 
-func TestMRAEncoding(t *testing.T) {
+const floatThreshold = 0.0000000001
+
+func TestMRA_Minimum(t *testing.T) {
+	tests := []struct {
+		in   [2]string
+		want float64
+	}{
+		{
+			in:   [2]string{"Byrne", "Boern"},
+			want: 4,
+		},
+		{
+			in:   [2]string{"Smith ", "Smyth"},
+			want: 3,
+		},
+		{
+			in:   [2]string{"Catherine ", "Kathryn"},
+			want: 3,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(fmt.Sprintf("%s & %s", tt.in[0], tt.in[1]), func(t *testing.T) {
+			mra := MRA{}
+
+			got := mra.Minimum(tt.in[0], tt.in[1])
+
+			if math.Abs(got-tt.want) > floatThreshold {
+				t.Errorf("want %f, got %f", tt.want, got)
+			}
+		})
+	}
+}
+
+func TestMRA_Encoding(t *testing.T) {
 	tests := []struct {
 		in   string
 		want string
@@ -45,7 +80,6 @@ func TestMRAEncoding(t *testing.T) {
 			}
 		})
 	}
-
 }
 
 func BenchmarkMRA_Encoding(b *testing.B) {
