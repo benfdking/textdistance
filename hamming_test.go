@@ -32,6 +32,10 @@ func TestHammingDistance(t *testing.T) {
 			ins:  [2]string{"drummer", "dresser"},
 			want: 3,
 		},
+		{
+			ins:  [2]string{"flaw", "lawn"},
+			want: 4,
+		},
 	}
 	for _, tt := range tts {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {

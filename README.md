@@ -1,6 +1,7 @@
 # textdistance
 
 [![](https://godoc.org/github.com/benfdking/textdistance?status.svg)](http://godoc.org/github.com/benfdking/textdistance)
+[![Go Report Card](https://goreportcard.com/badge/github.com/benfdking/textdistance)](https://goreportcard.com/report/github.com/benfdking/textdistance)
 
 `textdistance` is a string comparison library written in Go
 
