@@ -8,3 +8,11 @@ benchAgainstMaster:
 	@go test -test.benchmem=true -run=NONE -bench=. ./... > old.txt
 	benchcmp old.txt new.txt
 	@git co  $(pre_bench_branch_name)
+
+.PHONY: fmt
+fmt:
+	@gofmt -s -w .
+
+.PHONY: test
+test:
+	@go test --race .

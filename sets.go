@@ -6,10 +6,9 @@ import (
 )
 
 func WordsToSet(s string) mapset.Set {
-	set := mapset.NewSet()
+	set := mapset.NewThreadUnsafeSet()
 	for _, token := range strings.Fields(s) {
 		set.Add(token)
 	}
 	return set
 }
-
