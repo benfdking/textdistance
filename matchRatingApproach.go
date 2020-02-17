@@ -38,7 +38,6 @@ func (m MRA) Distance(s1, s2 string) float64 {
 
 	//minimum := m.Minimum(e1, e2)
 
-
 	//if math.Abs(len(encoded1) - len(encoded2)) > 3 {
 	//
 	//}
