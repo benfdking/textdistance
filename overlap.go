@@ -20,5 +20,5 @@ func (o Overlap) Similarity(s1, s2 string) float64 {
 	}
 	set1 := o.StringToSet(s1)
 	set2 := o.StringToSet(s2)
-	return float64(set1.Intersect(set2).Cardinality())
+	return float64(set1.Intersect(set2).Cardinality()) / min(float64(set1.Cardinality()), float64(set2.Cardinality()))
 }
