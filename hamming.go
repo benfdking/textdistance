@@ -1,9 +1,10 @@
 package textdistance
 
-// Hamming
+// Hamming structure incorporates methods for computing distance and similarity on Hamming.
 type Hamming struct {
 }
 
+// Maximum returns the maximum value for Distance given two strings.
 func (Hamming) Maximum(s1, s2 string) float64 {
 	l1 := len(s1)
 	l2 := len(s2)
@@ -13,6 +14,7 @@ func (Hamming) Maximum(s1, s2 string) float64 {
 	return float64(l1)
 }
 
+// Minimum returns the minimum value for Distance given two strings.
 func (Hamming) Minimum(s1, s2 string) float64 {
 	return 0
 }
