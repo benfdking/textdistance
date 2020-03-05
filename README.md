@@ -3,7 +3,7 @@
 [![](https://godoc.org/github.com/benfdking/textdistance?status.svg)](http://godoc.org/github.com/benfdking/textdistance)
 [![Go Report Card](https://goreportcard.com/badge/github.com/benfdking/textdistance)](https://goreportcard.com/report/github.com/benfdking/textdistance)
 
-`textdistance` is a string comparison library written in Go
+`textdistance` is a string comparison library written in Go. It is heavily `inspired` by the identically named Python library. There is a slight difference though that this library aims to be written in a `safe` way such that it does not panic.
 
 ## Usage
 
