@@ -66,17 +66,6 @@ func minUint(a, b int32) int32 {
 	return b
 }
 
-func minimum(a, b, c float64) float64 {
-	minimum := a
-	if minimum > b {
-		minimum = b
-	}
-	if minimum > c {
-		return c
-	}
-	return minimum
-}
-
 func (l Levenshtein) Minimum(s1, s2 string) float64 {
 	l1, l2 := len(s1), len(s2)
 	if l1 == l2 {
