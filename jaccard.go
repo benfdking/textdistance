@@ -4,12 +4,13 @@ import (
 	mapset "github.com/deckarep/golang-set"
 )
 
-type Jaccard struct {
-	StringToSet func(s string) mapset.Set
-}
-
+// NewJaccard returns a Jaccard structure with the StringToSet set to the default WordsToSet
 func NewJaccard() Jaccard {
 	return Jaccard{StringToSet: WordsToSet}
+}
+
+type Jaccard struct {
+	StringToSet func(s string) mapset.Set
 }
 
 func (j Jaccard) Similarity(s1, s2 string) float64 {

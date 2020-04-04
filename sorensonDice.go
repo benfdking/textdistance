@@ -2,14 +2,15 @@ package textdistance
 
 import mapset "github.com/deckarep/golang-set"
 
-type SorensonDice struct {
-	StringToSet func(s string) mapset.Set
-}
-
+// NewSorensonDice returns a SorensonDice structure with the StringToSet set to the default WordsToSet
 func NewSorensonDice() SorensonDice {
 	return SorensonDice{
 		StringToSet: WordsToSet,
 	}
+}
+
+type SorensonDice struct {
+	StringToSet func(s string) mapset.Set
 }
 
 func (SorensonDice) Maximum(s1, s2 string) float64 {

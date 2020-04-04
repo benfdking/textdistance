@@ -39,7 +39,7 @@ func TestHammingDistance(t *testing.T) {
 	}
 	for _, tt := range tts {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
-			h := Hamming{}
+			h := NewHamming()
 
 			got := h.Distance(tt.ins[0], tt.ins[1])
 
@@ -51,7 +51,8 @@ func TestHammingDistance(t *testing.T) {
 }
 
 func BenchmarkHammingDistance(b *testing.B) {
-	h := Hamming{}
+	h := NewHamming()
+
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
 		_ = h.Distance("karolin", "kerstin")

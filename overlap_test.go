@@ -45,7 +45,7 @@ func TestOverlap_Similarity(t *testing.T) {
 
 func BenchmarkOverlap_Similarity(b *testing.B) {
 	const in1, in2 = "a b e g", "e f"
-	o := Overlap{}
+	o := NewOverlap()
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {

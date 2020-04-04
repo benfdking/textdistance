@@ -5,6 +5,11 @@ import (
 	"unicode/utf8"
 )
 
+// NewJaccard returns a Levenshtein structure
+func NewLevenshtein () Levenshtein {
+	return Levenshtein{}
+}
+
 type Levenshtein struct {
 }
 
