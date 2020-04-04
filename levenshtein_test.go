@@ -27,7 +27,7 @@ func TestLevenshtein_Minimum(t *testing.T) {
 	}
 	for _, tt := range tts {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
-			l := Levenshtein{}
+			l := NewLevenshtein()
 
 			got := l.Minimum(tt.ins[0], tt.ins[1])
 
@@ -52,7 +52,7 @@ func TestLevenshtein_Distance(t *testing.T) {
 	}
 	for _, tt := range tts {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
-			l := Levenshtein{}
+			l := NewLevenshtein()
 
 			got := l.Distance(tt.ins[0], tt.ins[1])
 
@@ -65,7 +65,7 @@ func TestLevenshtein_Distance(t *testing.T) {
 
 func BenchmarkLevenshtein_Distance(b *testing.B) {
 	const s1, s2 = "flaw", "lawn"
-	l := Levenshtein{}
+	l := NewLevenshtein()
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {

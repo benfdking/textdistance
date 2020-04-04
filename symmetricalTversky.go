@@ -2,18 +2,19 @@ package textdistance
 
 import mapset "github.com/deckarep/golang-set"
 
-type SymmetricalTversky struct {
-	StringToSet func(s string) mapset.Set
-	Alpha       float64
-	Beta        float64
-}
-
+// NewSymmetricalTversky returns a SymmetricalTversky structure with the StringToSet set to the default WordsToSet
 func NewSymmetricalTversky(alpha, beta float64) SymmetricalTversky {
 	return SymmetricalTversky{
 		StringToSet: WordsToSet,
 		Alpha:       alpha,
 		Beta:        beta,
 	}
+}
+
+type SymmetricalTversky struct {
+	StringToSet func(s string) mapset.Set
+	Alpha       float64
+	Beta        float64
 }
 
 func (SymmetricalTversky) Maximum(s1, s2 string) float64 {

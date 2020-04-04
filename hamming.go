@@ -1,5 +1,10 @@
 package textdistance
 
+// NewHamming returns a Hamming structure
+func NewHamming () Hamming {
+	return Hamming{}
+}
+
 // Hamming structure incorporates methods for computing distance and similarity on Hamming.
 type Hamming struct {
 }

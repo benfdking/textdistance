@@ -2,12 +2,13 @@ package textdistance
 
 import mapset "github.com/deckarep/golang-set"
 
-type Overlap struct {
-	StringToSet func(string) mapset.Set
-}
-
+// NewOverlap returns a Overlap structure with the StringToSet set to the default WordsToSet
 func NewOverlap() Overlap {
 	return Overlap{StringToSet: WordsToSet}
+}
+
+type Overlap struct {
+	StringToSet func(string) mapset.Set
 }
 
 func (Overlap) Maximum(s1, s2 string) float64 {

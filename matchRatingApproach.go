@@ -5,6 +5,11 @@ import (
 	"strings"
 )
 
+// NewMRA returns a MRA structure
+func NewMRA () MRA {
+	return MRA{}
+}
+
 type MRA struct {
 }
 

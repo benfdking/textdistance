@@ -29,7 +29,7 @@ func TestMRA_Minimum(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%s & %s", tt.in[0], tt.in[1]), func(t *testing.T) {
-			mra := MRA{}
+			mra := NewMRA()
 
 			got := mra.Minimum(tt.in[0], tt.in[1])
 
@@ -72,7 +72,7 @@ func TestMRA_Encoding(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.in, func(t *testing.T) {
-			mra := MRA{}
+			mra := NewMRA()
 
 			got := mra.Encoding(tt.in)
 
@@ -85,7 +85,7 @@ func TestMRA_Encoding(t *testing.T) {
 
 func BenchmarkMRA_Encoding(b *testing.B) {
 	const in = "boern"
-	mra := MRA{}
+	mra := NewMRA()
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
