@@ -2,9 +2,9 @@ package textdistance
 
 import "testing"
 
-func BenchmarkSorensonDice_Similarity(b *testing.B) {
+func BenchmarkSymmetricalTversky_Similarity(b *testing.B) {
 	const in1, in2 = "a b e g", "e f"
-	o := NewSorensonDice()
+	o := NewSymmetricalTversky(0.5, 0.5)
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
