@@ -8,6 +8,9 @@ func BenchmarkSorensonDice_Similarity(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		o.Similarity(in1, in2)
+		_, err := o.Similarity(in1, in2)
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }

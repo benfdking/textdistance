@@ -31,10 +31,13 @@ func TestMRA_Minimum(t *testing.T) {
 		t.Run(fmt.Sprintf("%s & %s", tt.in[0], tt.in[1]), func(t *testing.T) {
 			mra := NewMRA()
 
-			got := mra.Minimum(tt.in[0], tt.in[1])
+			got, err := mra.Minimum(tt.in[0], tt.in[1])
 
 			if math.Abs(got-tt.want) > floatThreshold {
 				t.Errorf("want %f, got %f", tt.want, got)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -74,10 +77,13 @@ func TestMRA_Encoding(t *testing.T) {
 		t.Run(tt.in, func(t *testing.T) {
 			mra := NewMRA()
 
-			got := mra.Encoding(tt.in)
+			got, err := mra.Encoding(tt.in)
 
 			if got != tt.want {
 				t.Errorf("want %s, got %s", tt.want, got)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -89,6 +95,9 @@ func BenchmarkMRA_Encoding(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		mra.Encoding(in)
+		_, err := mra.Encoding(in)
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }

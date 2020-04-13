@@ -34,10 +34,13 @@ func TestOverlap_Similarity(t *testing.T) {
 		t.Run(fmt.Sprintf("%s & %s", tt.in[0], tt.in[1]), func(t *testing.T) {
 			o := NewOverlap()
 
-			got := o.Similarity(tt.in[0], tt.in[1])
+			got, err := o.Similarity(tt.in[0], tt.in[1])
 
 			if math.Abs(got-tt.want) > floatThreshold {
 				t.Errorf("want %f, got %f", tt.want, got)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -49,6 +52,9 @@ func BenchmarkOverlap_Similarity(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		o.Similarity(in1, in2)
+		_, err := o.Similarity(in1, in2)
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }

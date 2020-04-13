@@ -29,10 +29,13 @@ func TestLevenshtein_Minimum(t *testing.T) {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
 			l := NewLevenshtein()
 
-			got := l.Minimum(tt.ins[0], tt.ins[1])
+			got, err := l.Minimum(tt.ins[0], tt.ins[1])
 
 			if got != tt.want {
 				t.Errorf("got %f, want %f", got, tt.want)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -54,10 +57,13 @@ func TestLevenshtein_Distance(t *testing.T) {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
 			l := NewLevenshtein()
 
-			got := l.Distance(tt.ins[0], tt.ins[1])
+			got, err := l.Distance(tt.ins[0], tt.ins[1])
 
 			if got != tt.want {
 				t.Errorf("got %f, want %f", got, tt.want)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -69,6 +75,9 @@ func BenchmarkLevenshtein_Distance(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		l.Distance(s1, s2)
+		_, err := l.Distance(s1, s2)
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }
