@@ -6,35 +6,47 @@ import (
 )
 
 // NewMRA returns a MRA structure
-func NewMRA () MRA {
+func NewMRA() MRA {
 	return MRA{}
 }
 
 type MRA struct {
 }
 
-func (m MRA) Minimum(s1, s2 string) float64 {
-	e1 := m.Encoding(s1)
-	e2 := m.Encoding(s2)
+func (m MRA) Minimum(s1, s2 string) (float64, error) {
+	e1, err := m.Encoding(s1)
+	if err != nil {
+		return 0, err
+	}
+	e2, err := m.Encoding(s2)
+	if err != nil {
+		return 0, err
+	}
 
 	sl := len(e1) + len(e2)
 	switch {
 	case sl <= 4:
-		return 5
+		return 5, nil
 	case 4 < sl && sl <= 7:
-		return 4
+		return 4, nil
 	case 7 < sl && sl <= 11:
-		return 3
+		return 3, nil
 	case sl == 12:
-		return 2
+		return 2, nil
 	default:
 		panic("invalid length of strings, must be smaller than 12 combined")
 	}
 }
 
-func (m MRA) Distance(s1, s2 string) float64 {
-	e1 := m.Encoding(s1)
-	e2 := m.Encoding(s2)
+func (m MRA) Distance(s1, s2 string) (float64, error) {
+	e1, err := m.Encoding(s1)
+	if err != nil {
+		return 0, err
+	}
+	e2, err := m.Encoding(s2)
+	if err != nil {
+		return 0, err
+	}
 
 	lengthDifference := math.Abs(float64(len(e1) - len(e2)))
 	if lengthDifference > 3 {
@@ -50,7 +62,7 @@ func (m MRA) Distance(s1, s2 string) float64 {
 	//min := m.Minimum(s1, s2)
 	// TODO Finish
 
-	return 0
+	return 0, nil
 }
 
 var (
@@ -70,7 +82,7 @@ var (
 // 3. Reduce codex to 6 letters by joining the first 3 and last 3 letters only
 //
 // From Wikipedia: https://en.wikipedia.org/wiki/Match_rating_approach
-func (m MRA) Encoding(s string) string {
+func (m MRA) Encoding(s string) (string, error) {
 	s = strings.ToUpper(s)
 
 	// step 1
@@ -98,7 +110,7 @@ func (m MRA) Encoding(s string) string {
 
 	// step 3
 	if len(removedDoubleConsonants) > 6 {
-		return removedDoubleConsonants[0:3] + removedDoubleConsonants[len(removedDoubleConsonants)-3:]
+		return removedDoubleConsonants[0:3] + removedDoubleConsonants[len(removedDoubleConsonants)-3:], nil
 	}
-	return removedDoubleConsonants
+	return removedDoubleConsonants, nil
 }

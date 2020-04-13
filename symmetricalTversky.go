@@ -17,13 +17,13 @@ type SymmetricalTversky struct {
 	Beta        float64
 }
 
-func (SymmetricalTversky) Maximum(s1, s2 string) float64 {
-	return 1
+func (SymmetricalTversky) Maximum(_, _ string) (float64, error) {
+	return 1, nil
 }
 
-func (t SymmetricalTversky) Similarity(s1, s2 string) float64 {
+func (t SymmetricalTversky) Similarity(s1, s2 string) (float64, error) {
 	if s1 == s2 {
-		return 1.0
+		return 1.0, nil
 	}
 	set1 := t.StringToSet(s1)
 	set2 := t.StringToSet(s2)
@@ -36,7 +36,7 @@ func (t SymmetricalTversky) Similarity(s1, s2 string) float64 {
 
 	intersect := float64(set1.Intersect(set2).Cardinality())
 
-	return intersect / (intersect + t.Beta*(t.Alpha*a+(1-t.Alpha)*b))
+	return intersect / (intersect + t.Beta*(t.Alpha*a+(1-t.Alpha)*b)), nil
 }
 
 func max(a, b float64) float64 {

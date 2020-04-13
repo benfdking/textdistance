@@ -21,10 +21,13 @@ func TestJaccard_Similarity(t *testing.T) {
 		t.Run(fmt.Sprintf("%s, %s", tt.ins[0], tt.ins[1]), func(t *testing.T) {
 			j := NewJaccard()
 
-			got := j.Similarity(tt.ins[0], tt.ins[1])
+			got, err := j.Similarity(tt.ins[0], tt.ins[1])
 
 			if got != tt.want {
 				t.Errorf("got %f, want %f", got, tt.want)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -37,6 +40,9 @@ func BenchmarkJaccard_Similarity(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		j.Similarity(s1, s2)
+		_, err := j.Similarity(s1, s2)
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }

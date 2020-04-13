@@ -41,10 +41,13 @@ func TestHammingDistance(t *testing.T) {
 		t.Run(fmt.Sprintf("%s", tt.ins), func(t *testing.T) {
 			h := NewHamming()
 
-			got := h.Distance(tt.ins[0], tt.ins[1])
+			got, err := h.Distance(tt.ins[0], tt.ins[1])
 
 			if got != tt.want {
 				t.Errorf("got %f, want %f", got, tt.want)
+			}
+			if err != nil {
+				t.Errorf("expect empty error, got %+v", err)
 			}
 		})
 	}
@@ -55,6 +58,9 @@ func BenchmarkHammingDistance(b *testing.B) {
 
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {
-		_ = h.Distance("karolin", "kerstin")
+		_, err := h.Distance("karolin", "kerstin")
+		if err != nil {
+			b.Fatal(err)
+		}
 	}
 }

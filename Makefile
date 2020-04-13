@@ -4,10 +4,10 @@ pre_bench_branch_name := $(shell git branch --show-current)
 benchAgainstMaster:
 	@git diff --exit-code 
 	@go test -test.benchmem=true -run=NONE -bench=. ./... > new.txt
-	@git co master
+	@git checkout master
 	@go test -test.benchmem=true -run=NONE -bench=. ./... > old.txt
 	benchcmp old.txt new.txt
-	@git co  $(pre_bench_branch_name)
+	@git checkout  $(pre_bench_branch_name)
 
 .PHONY: fmt
 fmt:

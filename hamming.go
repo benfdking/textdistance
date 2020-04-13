@@ -1,7 +1,7 @@
 package textdistance
 
 // NewHamming returns a Hamming structure
-func NewHamming () Hamming {
+func NewHamming() Hamming {
 	return Hamming{}
 }
 
@@ -10,22 +10,22 @@ type Hamming struct {
 }
 
 // Maximum returns the maximum value for Distance given two strings.
-func (Hamming) Maximum(s1, s2 string) float64 {
+func (Hamming) Maximum(s1, s2 string) (float64, error) {
 	l1 := len(s1)
 	l2 := len(s2)
 	if l1 != l2 {
 		panic("strings must be of same length")
 	}
-	return float64(l1)
+	return float64(l1), nil
 }
 
 // Minimum returns the minimum value for Distance given two strings.
-func (Hamming) Minimum(s1, s2 string) float64 {
-	return 0
+func (Hamming) Minimum(_, _ string) (float64, error) {
+	return 0, nil
 }
 
 // TODO Think about extending this with an error
-func (Hamming) Distance(s1, s2 string) float64 {
+func (Hamming) Distance(s1, s2 string) (float64, error) {
 	l1 := len(s1)
 	l2 := len(s2)
 	if l1 != l2 {
@@ -39,9 +39,17 @@ func (Hamming) Distance(s1, s2 string) float64 {
 			distance++
 		}
 	}
-	return distance
+	return distance, nil
 }
 
-func (h Hamming) Similarity(s1, s2 string) float64 {
-	return h.Distance(s1, s2) / h.Maximum(s1, s2)
+func (h Hamming) Similarity(s1, s2 string) (float64, error) {
+	d, err := h.Distance(s1, s2)
+	if err != nil {
+		return 0, err
+	}
+	m, err := h.Maximum(s1, s2)
+	if err != nil {
+		return 0, err
+	}
+	return d / m, nil
 }
