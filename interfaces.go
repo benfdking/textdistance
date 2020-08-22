@@ -1,6 +1,6 @@
 package textdistance
 
-// Distance generally tends to be a measure of the difference 
+// Distance generally tends to be a measure of the difference
 type Distance interface {
 	Distance(s1, s2 string) (float64, error)
 }
