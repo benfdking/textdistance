@@ -1,5 +1,7 @@
 package textdistance
 
+import "errors"
+
 // NewHamming returns a Hamming structure
 func NewHamming() Hamming {
 	return Hamming{}
@@ -14,7 +16,7 @@ func (Hamming) Maximum(s1, s2 string) (float64, error) {
 	l1 := len(s1)
 	l2 := len(s2)
 	if l1 != l2 {
-		panic("strings must be of same length")
+		return 0, errors.New("strings must be of same length")
 	}
 	return float64(l1), nil
 }
@@ -29,7 +31,7 @@ func (Hamming) Distance(s1, s2 string) (float64, error) {
 	l1 := len(s1)
 	l2 := len(s2)
 	if l1 != l2 {
-		panic("strings must be of same length")
+		return 0, errors.New("strings must be of same length")
 	}
 	r1 := []rune(s1)
 	r2 := []rune(s2)
