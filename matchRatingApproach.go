@@ -1,6 +1,7 @@
 package textdistance
 
 import (
+	"errors"
 	"math"
 	"strings"
 )
@@ -34,7 +35,7 @@ func (m MRA) Minimum(s1, s2 string) (float64, error) {
 	case sl == 12:
 		return 2, nil
 	default:
-		panic("invalid length of strings, must be smaller than 12 combined")
+		return 0, errors.New("invalid length of strings, must be smaller than 12 combined")
 	}
 }
 
@@ -50,7 +51,7 @@ func (m MRA) Distance(s1, s2 string) (float64, error) {
 
 	lengthDifference := math.Abs(float64(len(e1) - len(e2)))
 	if lengthDifference > 3 {
-		panic("encoded must have length difference less than 3")
+		return 0, errors.New("encoded must have length difference less than 3")
 	}
 
 	//minimum := m.Minimum(e1, e2)
@@ -62,7 +63,7 @@ func (m MRA) Distance(s1, s2 string) (float64, error) {
 	//min := m.Minimum(s1, s2)
 	// TODO Finish
 
-	return 0, nil
+	return 0, errors.New("not fully implemented")
 }
 
 var (
