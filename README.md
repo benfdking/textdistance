@@ -1,6 +1,6 @@
 # textdistance
 
-[![](https://godoc.org/github.com/benfdking/textdistance?status.svg)](http://godoc.org/github.com/benfdking/textdistance)
+[![](https://godoc.org/github.com/benfdking/textdistance?status.svg)](https://pkg.go.dev/github.com/benfdking/textdistance?tab=doc)
 [![Go Report Card](https://goreportcard.com/badge/github.com/benfdking/textdistance)](https://goreportcard.com/report/github.com/benfdking/textdistance)
 
 `textdistance` is a string comparison library written in Go. Heavily inspired by the identically named [Python library](https://github.com/life4/textdistance), it aims to provide a myriad of different algorithms. 
@@ -13,7 +13,7 @@ Additionally, it aims to be:
 
 ## Documentation
 
-The full documentation with further examples is available at [GoDoc](https://godoc.org/github.com/benfdking/textdistance).
+The full documentation with further examples is available at [GoDoc](https://pkg.go.dev/github.com/benfdking/textdistance?tab=doc).
 
 ## Usage
 
@@ -35,7 +35,7 @@ import (
 )
 
 func main(){
-	h := textdistance.Hamming{}
+	h := textdistance.NewHamming()
 	distance, _ := h.Distance("drummer", "dresser")
 	fmt.Println(distance)
 }
