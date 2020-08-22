@@ -5,7 +5,7 @@ import (
 	"unicode/utf8"
 )
 
-// NewJaccard returns a Levenshtein structure
+// NewLevenshtein returns a Levenshtein structure
 func NewLevenshtein() Levenshtein {
 	return Levenshtein{}
 }
