@@ -2,7 +2,7 @@ package textdistance
 
 import "errors"
 
-// NewHamming returns a Hamming structure
+// NewHamming returns a Hamming structure.
 func NewHamming() Hamming {
 	return Hamming{}
 }

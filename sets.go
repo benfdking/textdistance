@@ -1,8 +1,9 @@
 package textdistance
 
 import (
-	mapset "github.com/deckarep/golang-set"
 	"strings"
+
+	mapset "github.com/deckarep/golang-set"
 )
 
 func WordsToSet(s string) mapset.Set {
