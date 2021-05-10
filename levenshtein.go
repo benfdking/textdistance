@@ -13,6 +13,7 @@ func NewLevenshtein() Levenshtein {
 type Levenshtein struct {
 }
 
+// Distance returns the Levenshtein distance
 func (l Levenshtein) Distance(s1, b string) (float64, error) {
 	if len(s1) == 0 {
 		return float64(utf8.RuneCountInString(b)), nil
