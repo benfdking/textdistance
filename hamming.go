@@ -26,7 +26,7 @@ func (Hamming) Minimum(_, _ string) (float64, error) {
 	return 0, nil
 }
 
-// TODO Think about extending this with an error
+// Distance returns the hamming distance
 func (Hamming) Distance(s1, s2 string) (float64, error) {
 	l1 := len(s1)
 	l2 := len(s2)
@@ -44,6 +44,7 @@ func (Hamming) Distance(s1, s2 string) (float64, error) {
 	return distance, nil
 }
 
+// Similarity returns the hamming similarity
 func (h Hamming) Similarity(s1, s2 string) (float64, error) {
 	d, err := h.Distance(s1, s2)
 	if err != nil {
